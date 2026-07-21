@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+
+# Release assets are generated or copied into staging and are not source files.
+/models/*/model.onnx
+/models/*/attribute_directions.json
+/artifacts/

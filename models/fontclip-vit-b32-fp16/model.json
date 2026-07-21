@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "modelApiVersion": 1,
+  "id": "fontclip-vit-b32-fp16",
+  "name": "FontCLIP ViT-B/32 FP16",
+  "description": "A FontCLIP ViT-B/32 ONNX model with FP16 parameters producing 512-dimensional font embeddings.",
+  "inference": {
+    "inputName": "gray_image",
+    "inputDtype": "float32",
+    "inputShape": [8, 1, 224, 224],
+    "outputName": "embedding",
+    "outputDtype": "float32",
+    "outputShape": [8, 512],
+    "preprocessing": "fontcluster_grayscale_mask_v1",
+    "l2Normalized": true
+  },
+  "licenses": {
+    "modelWeights": "NOASSERTION",
+    "attributeDirections": "CC-BY-NC (version unspecified)"
+  },
+  "provenance": {
+    "architecture": "ViT-B/32",
+    "parameterStorage": "float16",
+    "modelSha256": "e4f3d8014365c40c7f4e99917b14637c6cf1b0a9e597c857d41769090e74bc08",
+    "attributeDirectionsSha256": "5f729dc3cab6f369d2904452dc92e541966687802c6c93b45209cfd6f526aad7"
+  }
+}
