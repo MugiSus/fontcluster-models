@@ -60,7 +60,7 @@ FontCluster verifies those digests while downloading.
 | Model ID | Display name | Notes |
 | --- | --- | --- |
 | `mobilenet-v4-medium` | MobileNet V4 Medium | Compact 512-dimensional model bundled with FontCluster. |
-| `fontclip-vit-b32-fp16` | FontCLIP ViT-B/32 FP16 | 512-dimensional FontCLIP ONNX model stored with FP16 parameters. |
+| `fontclip-vit-b32` | FontCLIP ViT-B/32 | 512-dimensional FontCLIP ONNX model with FP32 parameters. |
 
 Licenses for source code named in the notices do not automatically establish a
 license for model weights. Every bundle therefore carries its own

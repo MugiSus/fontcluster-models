@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "modelApiVersion": 1,
-  "id": "fontclip-vit-b32-fp16",
-  "name": "FontCLIP ViT-B/32 FP16",
-  "description": "A FontCLIP ViT-B/32 ONNX model with FP16 parameters producing 512-dimensional font embeddings.",
+  "id": "fontclip-vit-b32",
+  "name": "FontCLIP ViT-B/32",
+  "description": "The original FP32 FontCLIP ViT-B/32 image encoder producing 512-dimensional font embeddings.",
   "inference": {
     "inputName": "gray_image",
     "inputDtype": "float32",
@@ -20,8 +20,8 @@
   },
   "provenance": {
     "architecture": "ViT-B/32",
-    "parameterStorage": "float16",
-    "modelSha256": "e4f3d8014365c40c7f4e99917b14637c6cf1b0a9e597c857d41769090e74bc08",
-    "attributeDirectionsSha256": "5f729dc3cab6f369d2904452dc92e541966687802c6c93b45209cfd6f526aad7"
+    "parameterStorage": "float32",
+    "modelSha256": "5189e718aeaad68ffb134bb729b7cef2d0693f2887653320717ba3243237323a",
+    "attributeDirectionsSha256": "c28d57ea45e3070520975dab2847ad6a6ea4980fecb5fba4e73a69afd1aad903"
   }
 }

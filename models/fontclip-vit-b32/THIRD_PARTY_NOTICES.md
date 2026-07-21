@@ -1,9 +1,9 @@
 # Third-party notices
 
 This bundle contains an ONNX file distributed by FontCluster under the model ID
-`fontclip-vit-b32-fp16`. The release identifies the model as FontCLIP ViT-B/32
-with FP16 parameter storage. This notice does not independently establish the
-source-checkpoint lineage or assert a license for the model weights.
+`fontclip-vit-b32`. The release identifies the model as the original FP32
+FontCLIP ViT-B/32 image encoder. This notice does not independently establish
+the source-checkpoint lineage or assert a license for the model weights.
 
 Its `attribute_directions.json` was fitted from the font images and attribute
 ratings published with *Exploratory Font Selection Using Crowdsourced

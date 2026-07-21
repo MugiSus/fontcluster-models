@@ -131,7 +131,7 @@ embedding = session.run(["embedding"], {"gray_image": sample})[0]
 if embedding.shape != (8, 512) or embedding.dtype != np.float32 or not np.isfinite(embedding).all():
     raise SystemExit(f"invalid inference output: shape={embedding.shape}, dtype={embedding.dtype}")
 norms = np.linalg.norm(embedding, axis=1)
-# FP16 parameter storage can introduce sub-millipercent rounding in the final norm.
+# Model implementations can introduce sub-millipercent rounding in the final norm.
 if not np.allclose(norms, 1.0, rtol=1e-3, atol=1e-3):
     raise SystemExit(f"embedding output is not L2-normalized: norms={norms.tolist()}")
 
