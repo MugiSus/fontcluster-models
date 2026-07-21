@@ -5,18 +5,9 @@ This repository is the release source for optional embedding models used by
 
 ## Distribution contract
 
-FontCluster identifies a model by the logical ID stored in `model.json`. GitHub
-Release tags are technical publication identifiers with this form:
-
-```text
-<model-id>@<release-revision>
-```
-
-For example, `fontclip-vit-b32@2` publishes the logical model ID
-`fontclip-vit-b32`. The two original bare tags are treated as release revision
-1 for migration; suffixed revisions therefore start at 2. The release revision
-is not part of the model ID stored in FontCluster sessions. Each release
-contains exactly these three assets:
+Each model is published as one GitHub Release whose tag exactly matches the ID
+stored in `model.json`. That ID is also the directory name used by FontCluster
+under Application Support. Each release contains exactly these three assets:
 
 - `model.json`
 - `model.onnx`
@@ -34,20 +25,17 @@ FontCluster accepts model API version 1 with this fixed inference contract:
 Release assets are installed together as one bundle. Attribute directions are
 model-specific and must never be reused across different model IDs.
 
-## Model versions and release revisions
+## Model versions
 
-A model ID identifies the model selected by the user. A retrained model, a
-converted model whose output changes, or regenerated attribute directions must
-use a new model ID. A release revision instead distinguishes technical GitHub
-publications of the same logical model and does not create another selectable
-model.
+A model ID identifies one exact selectable bundle. A retrained model, a
+converted model whose bytes or output changes, regenerated attribute
+directions, or any other bundle change must use a new model ID.
 
 This repository uses regular mutable GitHub Releases. FontCluster accepts
 published releases and ignores drafts and prereleases; it does not require the
-GitHub `immutable` flag. Validate all three assets before publishing. If a
-published release must be withdrawn or replaced, remove it and publish the
-replacement with the next release revision rather than changing assets already
-available under an existing tag.
+GitHub `immutable` flag. Validate all three assets before publishing. Do not
+silently replace assets after a model is available to FontCluster users;
+withdraw the release and publish the changed bundle under a new model ID.
 
 ## Repository layout
 
@@ -62,8 +50,8 @@ while downloading.
 
 | Model ID | Display name | Notes |
 | --- | --- | --- |
-| `mobilenet-v4-medium` | MobileNet V4 Medium | Default compact 512-dimensional model, downloaded on demand. |
-| `fontclip-vit-b32` | FontCLIP ViT-B/32 | 512-dimensional FontCLIP ONNX model with FP32 parameters. |
+| `mobilenet-v4-medium-v1` | MobileNet V4 Medium | Default compact 512-dimensional model, downloaded on demand. |
+| `fontclip-vit-b32-v1` | FontCLIP ViT-B/32 | 512-dimensional FontCLIP ONNX model with FP32 parameters. |
 
 ## Attribution and licensing
 

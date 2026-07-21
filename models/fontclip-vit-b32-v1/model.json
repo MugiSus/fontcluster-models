@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "modelApiVersion": 1,
-  "id": "mobilenet-v4-medium",
-  "name": "MobileNet V4 Medium",
-  "description": "A compact MobileNet V4 Medium model producing 512-dimensional font embeddings.",
+  "id": "fontclip-vit-b32-v1",
+  "name": "FontCLIP ViT-B/32",
+  "description": "The original FP32 FontCLIP ViT-B/32 image encoder producing 512-dimensional font embeddings.",
   "inference": {
     "inputName": "gray_image",
     "inputDtype": "float32",
@@ -19,8 +19,9 @@
     "attributeDirections": "CC-BY-NC (version unspecified)"
   },
   "provenance": {
-    "architecture": "mobilenetv4_conv_medium",
-    "modelSha256": "73c2c5ae8d3c22429e4b17c8562da288d64d0349b30e577ec621c6f0754a8d63",
-    "attributeDirectionsSha256": "cd30b66bf5ca46152836dfac547a06ed182b6db6f3f7590561156648282f9e09"
+    "architecture": "ViT-B/32",
+    "parameterStorage": "float32",
+    "modelSha256": "5189e718aeaad68ffb134bb729b7cef2d0693f2887653320717ba3243237323a",
+    "attributeDirectionsSha256": "c28d57ea45e3070520975dab2847ad6a6ea4980fecb5fba4e73a69afd1aad903"
   }
 }
