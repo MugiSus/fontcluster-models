@@ -5,13 +5,22 @@ This repository is the release source for optional embedding models used by
 
 ## Distribution contract
 
-Each model is published as one GitHub Release. The release tag is the model ID
-and contains exactly these assets:
+FontCluster identifies a model by the logical ID stored in `model.json`. GitHub
+Release tags are technical publication identifiers with this form:
+
+```text
+<model-id>@<release-revision>
+```
+
+For example, `fontclip-vit-b32@2` publishes the logical model ID
+`fontclip-vit-b32`. The two original bare tags are treated as release revision
+1 for migration; suffixed revisions therefore start at 2. The release revision
+is not part of the model ID stored in FontCluster sessions. Each release
+contains exactly these three assets:
 
 - `model.json`
 - `model.onnx`
 - `attribute_directions.json`
-- `THIRD_PARTY_NOTICES.md`
 
 FontCluster accepts model API version 1 with this fixed inference contract:
 
@@ -25,46 +34,56 @@ FontCluster accepts model API version 1 with this fixed inference contract:
 Release assets are installed together as one bundle. Attribute directions are
 model-specific and must never be reused across different model IDs.
 
-## Versioning and immutability
+## Model versions and release revisions
 
-One model ID identifies one immutable set of bytes. After publishing a release,
-do not replace its tag or any asset. A retrained model, a converted model whose
-bytes changed, regenerated attribute directions, or any other bundle change
-must be published under a new model ID. Version information therefore belongs
-in the model ID when a second version is needed; releases are not updated in
-place.
+A model ID identifies the model selected by the user. A retrained model, a
+converted model whose output changes, or regenerated attribute directions must
+use a new model ID. A release revision instead distinguishes technical GitHub
+publications of the same logical model and does not create another selectable
+model.
 
-The GitHub repository must have immutable releases enabled before publishing.
-FontCluster intentionally ignores draft, prerelease, and mutable releases.
+This repository uses regular mutable GitHub Releases. FontCluster accepts
+published releases and ignores drafts and prereleases; it does not require the
+GitHub `immutable` flag. Validate all three assets before publishing. If a
+published release must be withdrawn or replaced, remove it and publish the
+replacement with the next release revision rather than changing assets already
+available under an existing tag.
 
 ## Repository layout
 
-`models/<model-id>/` contains the tracked metadata and notices for each model.
-`releases/<model-id>.md` contains the corresponding release notes. Large
-generated assets are not committed. Assemble the four release assets in a
-separate staging directory, then run:
-
-```sh
-python3 scripts/verify_bundle.py /path/to/staging/<model-id>
-```
-
-The verifier requires `onnx`, `onnxruntime`, and `numpy`. It checks the manifest,
-its declared model and attribute-direction digests, the fixed ONNX interface,
-one CPU inference batch, output normalization, and all 37 attribute directions.
-It also prints the size and SHA-256 digest of every release asset. GitHub
-additionally records a SHA-256 digest for each uploaded release asset;
-FontCluster verifies those digests while downloading.
+`models/<model-id>/` contains the tracked manifest for each model.
+`releases/<model-id>.md` contains the corresponding release-note source. Large
+generated assets are not committed. Assemble the three release assets in a
+separate staging directory after validating the model. GitHub records a SHA-256
+digest for each uploaded release asset; FontCluster verifies those digests
+while downloading.
 
 ## Available model sources
 
 | Model ID | Display name | Notes |
 | --- | --- | --- |
-| `mobilenet-v4-medium` | MobileNet V4 Medium | Compact 512-dimensional model bundled with FontCluster. |
+| `mobilenet-v4-medium` | MobileNet V4 Medium | Default compact 512-dimensional model, downloaded on demand. |
 | `fontclip-vit-b32` | FontCLIP ViT-B/32 | 512-dimensional FontCLIP ONNX model with FP32 parameters. |
 
-Licenses for source code named in the notices do not automatically establish a
-license for model weights. Every bundle therefore carries its own
-`THIRD_PARTY_NOTICES.md`, and the manifests use `NOASSERTION` where no explicit
-weights license has been established. The O'Donovan data notice specifies CC
-BY-NC without identifying a Creative Commons license version; this repository
-does not infer one.
+## Attribution and licensing
+
+The model-specific `attribute_directions.json` files were fitted using the font
+images and attribute ratings published with:
+
+> Peter O'Donovan, Jānis Lībeks, Aseem Agarwala, and Aaron Hertzmann.
+> *Exploratory Font Selection Using Crowdsourced Attributes.*
+> ACM Transactions on Graphics 33(4), 2014 (Proc. SIGGRAPH).
+
+The [official dataset](https://www.dgp.toronto.edu/~donovan/font/) is distributed
+under Creative Commons Attribution-NonCommercial (CC BY-NC) without identifying
+a license version.
+
+The FontCLIP model builds on
+[FontCLIP](https://github.com/yukistavailable/FontCLIP) and
+[OpenAI CLIP](https://github.com/openai/CLIP). MobileNet V4 support used for the
+compact model is available through
+[timm](https://github.com/huggingface/pytorch-image-models). Their source-code
+licenses do not by themselves establish a license for the model weights. Model
+manifests use `NOASSERTION` when no explicit weights license has been established.
+This section is the attribution record for all model releases; attribution is
+not duplicated as a per-release asset.
