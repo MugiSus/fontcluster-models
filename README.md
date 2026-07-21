@@ -25,6 +25,19 @@ FontCluster accepts model API version 1 with this fixed inference contract:
 Release assets are installed together as one bundle. Attribute directions are
 model-specific and must never be reused across different model IDs.
 
+`model.json` is FontCluster's bundle manifest, not an external model format.
+It contains the model API version, identity and display metadata, an optional
+parameter count, and the checksums used to validate an installed bundle. A
+separate schema version is intentionally omitted: additive metadata remains
+backward-compatible, while an incompatible inference contract requires a new
+model API version.
+
+`parameterCount` is the total number of scalar elements in the source inference
+module's parameter tensors immediately before ONNX export. Non-parameter
+buffers, preprocessing constants, and export-generated initializers are
+excluded. It may be omitted when that source-level count cannot be established
+reliably.
+
 ## Model versions
 
 A model ID identifies one exact selectable bundle. A retrained model, a

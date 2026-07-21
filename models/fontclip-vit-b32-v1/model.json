@@ -1,26 +1,10 @@
 {
-  "schemaVersion": 1,
   "modelApiVersion": 1,
   "id": "fontclip-vit-b32-v1",
   "name": "FontCLIP ViT-B/32",
   "description": "The original FP32 FontCLIP ViT-B/32 image encoder producing 512-dimensional font embeddings.",
-  "inference": {
-    "inputName": "gray_image",
-    "inputDtype": "float32",
-    "inputShape": [8, 1, 224, 224],
-    "outputName": "embedding",
-    "outputDtype": "float32",
-    "outputShape": [8, 512],
-    "preprocessing": "fontcluster_grayscale_mask_v1",
-    "l2Normalized": true
-  },
-  "licenses": {
-    "modelWeights": "NOASSERTION",
-    "attributeDirections": "CC-BY-NC (version unspecified)"
-  },
-  "provenance": {
-    "architecture": "ViT-B/32",
-    "parameterStorage": "float32",
+  "parameterCount": 87849216,
+  "checksums": {
     "modelSha256": "5189e718aeaad68ffb134bb729b7cef2d0693f2887653320717ba3243237323a",
     "attributeDirectionsSha256": "c28d57ea45e3070520975dab2847ad6a6ea4980fecb5fba4e73a69afd1aad903"
   }
